@@ -7,7 +7,7 @@ function MovieCard({
 }) {
 	return (
 		<div>
-			<img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt="" />
+			<img src={`https://image.tmdb.org/t/p/w400${poster_path}`} alt="" />
 			<ul>
 				<li>
 					<h1>{title}</h1>
