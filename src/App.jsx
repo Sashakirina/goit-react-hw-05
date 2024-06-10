@@ -16,8 +16,8 @@ const MovieReviews = lazy(() =>
 function App() {
 	return (
 		<>
+			<Navigation />
 			<Suspense>
-				<Navigation />
 				<Routes>
 					<Route path="/" element={<HomePage />} />
 					<Route path="/movies" element={<MoviesPage />} />

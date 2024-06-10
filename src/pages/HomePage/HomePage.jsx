@@ -16,7 +16,6 @@ function HomePage() {
 			try {
 				const movies = await getTrendingMovies();
 				setMovies(movies);
-				console.log(movies);
 			} catch {
 				setError(true);
 			} finally {

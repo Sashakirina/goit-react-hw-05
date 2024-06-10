@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
 	Link,
 	NavLink,
@@ -19,6 +19,8 @@ function MovieDetailsPage() {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
 	const location = useLocation();
+	const prevLocation = useRef(location.state);
+
 	const buildLinkClass = ({ isActive }) => {
 		return clsx(css.navLink, isActive && css.active);
 	};
@@ -41,21 +43,18 @@ function MovieDetailsPage() {
 
 	return (
 		<div>
-			<Link to={location.state ?? "/movies"}>Go back </Link>
+			<Link to={prevLocation.current ?? "/movies"}>Go back </Link>
 			{loading && <Loader />}
 			{error && <ErrorMessage />}
 			<MovieCard {...movie} />
 			<ul className={css.nav}>
 				<li>
-					<NavLink to="cast" state={location.state} className={buildLinkClass}>
+					<NavLink to="cast" state={prevLocation} className={buildLinkClass}>
 						Cast
 					</NavLink>
 				</li>
 				<li>
-					<NavLink
-						to="reviews"
-						state={location.state}
-						className={buildLinkClass}>
+					<NavLink to="reviews" state={prevLocation} className={buildLinkClass}>
 						Reviews
 					</NavLink>
 				</li>

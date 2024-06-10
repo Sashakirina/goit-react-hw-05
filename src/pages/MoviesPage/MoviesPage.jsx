@@ -15,15 +15,12 @@ function MoviesPage() {
 			try {
 				const movies = await getSearchMovies(query);
 				setMovies(movies);
-				console.log(movies);
 			} catch (error) {
 				console.log(error);
 			}
 		};
 		getData();
 	}, [query]);
-
-	console.log(query);
 
 	return (
 		<div>
