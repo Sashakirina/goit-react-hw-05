@@ -17,6 +17,7 @@ function Navigation() {
 					Movies
 				</NavLink>
 			</nav>
+			<hr />
 		</div>
 	);
 }

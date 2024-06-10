@@ -6,8 +6,9 @@
 	cursor: pointer;
 }
 .nav {
-	width: 100%;
-	margin-bottom: 16px;
+	max-width: 1000px;
+	margin: 20px auto;
+	text-align: center;
 }
 .active {
 	color: blueviolet;
