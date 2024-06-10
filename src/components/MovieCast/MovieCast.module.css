@@ -1,0 +1,35 @@
+.cast {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	padding: 24px;
+	margin: 34px auto;
+	border: 2px, solid, #484dac;
+	border-radius: 25px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	max-width: 1000px;
+	background-color: rgb(243, 203, 240);
+	justify-content: center;
+}
+:root {
+	--card-border-radius: 15px;
+	--card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	--card-border: 2px solid #484dac;
+}
+
+.card {
+	border: var(--card-border);
+	border-radius: var(--card-border-radius);
+	box-shadow: var(--card-shadow);
+	width: 200px;
+	overflow: hidden;
+}
+
+.photo {
+	width: 100%;
+	height: auto;
+	display: block;
+	clip-path: inset(
+		0 round var(--card-border-radius) var(--card-border-radius) 0 0
+	);
+}

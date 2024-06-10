@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import MovieList from "../../components/MovieList/MovieList";
-import SearchForm from "../../components/SearchForm/SearchForm";
 import { getSearchMovies } from "../../api/fetchMovies";
+import { useSearchParams } from "react-router-dom";
+import SearchForm from "../../components/SearchForm/SearchForm";
 
 function MoviesPage() {
-	const [query, setQuery] = useState("");
 	const [movies, setMovies] = useState([]);
+	const [searchParams] = useSearchParams();
+	const query = searchParams.get("search") ?? "";
 
 	useEffect(() => {
 		if (!query) return;
@@ -21,11 +23,11 @@ function MoviesPage() {
 		getData();
 	}, [query]);
 
-	const onSearch = (value) => setQuery(value);
+	console.log(query);
 
 	return (
 		<div>
-			<SearchForm onSearch={onSearch} />
+			<SearchForm />
 			<MovieList movies={movies} />
 		</div>
 	);

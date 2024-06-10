@@ -1,36 +1,63 @@
 import { useEffect, useState } from "react";
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import {
+	Link,
+	NavLink,
+	Outlet,
+	useLocation,
+	useParams,
+} from "react-router-dom";
 import { getMovieDetails } from "../../api/fetchMovies";
 import MovieCard from "../../components/MovieCard/MovieCard";
+import Loader from "../../components/Loader/Loader";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import clsx from "clsx";
+import css from "./MovieDetailsPage.module.css";
 
 function MovieDetailsPage() {
 	const { movieId } = useParams();
 	const [movie, setMovie] = useState();
-	console.log(movieId);
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(false);
+	const location = useLocation();
+	const buildLinkClass = ({ isActive }) => {
+		return clsx(css.navLink, isActive && css.active);
+	};
 
 	useEffect(() => {
 		const getData = async () => {
+			setError(false);
+			setLoading(true);
 			try {
 				const movie = await getMovieDetails(movieId);
 				setMovie(movie);
-			} catch (error) {
-				console.log(error);
+			} catch {
+				setError(true);
+			} finally {
+				setLoading(false);
 			}
 		};
 		getData();
 	}, [movieId]);
 
-	console.log(movie);
-
 	return (
 		<div>
+			<Link to={location.state ?? "/movies"}>Go back </Link>
+			{loading && <Loader />}
+			{error && <ErrorMessage />}
 			<MovieCard {...movie} />
-			<ul>
+			<ul className={css.nav}>
 				<li>
-					<NavLink to="cast">Cast</NavLink>
+					<NavLink to="cast" state={location.state} className={buildLinkClass}>
+						Cast
+					</NavLink>
 				</li>
 				<li>
-					<NavLink to="reviews">Reviews</NavLink>
+					<NavLink
+						to="reviews"
+						state={location.state}
+						className={buildLinkClass}>
+						Reviews
+					</NavLink>
 				</li>
 			</ul>
 			<Outlet />

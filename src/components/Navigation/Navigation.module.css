@@ -1,0 +1,15 @@
+.navLink {
+	width: 100px;
+	padding: 20px;
+	font-size: 20px;
+	font-weight: 700;
+	cursor: pointer;
+}
+.nav {
+	width: 100%;
+	margin-bottom: 16px;
+}
+.active {
+	color: blueviolet;
+	font-size: 28px;
+}
